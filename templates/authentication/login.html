@@ -12,7 +12,7 @@
 	{% block content%}
 	<h4>Login</h4>
 	<div> 
-		<form method="POST" action = "{% url 'base' %}" id="login-form">
+		<form method="POST" action = "{% url 'login' %}" id="login-form">
 			{% csrf_token %}
 			{{ form.as_p }}
 			<button type="submit" id ="login-btn" name="login" class="btn waves-effect waves-light left">Log In</button>

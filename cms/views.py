@@ -28,23 +28,9 @@ from cms.models import MyUser
 
 @require_http_methods(['GET', 'POST'])
 def base(request):
-    if request.user.is_authenticated():
-        return redirect('home')
-    if request.method == 'GET':
-        f = LoginForm();
-    else:
-        f = LoginForm(request.POST)
-        if f.is_valid():
-            user = f.get_user()
-            auth_login(request, user)
-            print("Valid")
-            #return JsonResponse(data = {'success': True})
-            return redirect('home')
-        else:
-            data = {'error': True, 'errors' : dict(f.errors.items())}
-            return	JsonResponse(status = 400, data = data)
-
-    return render(request, 'authentication/login.html',{'form': f})		
+	print(request.user)
+	context = {'user' : request.user}
+	return render(request, 'authentication/base.html', context)		
 
 
 @require_http_methods(['GET', 'POST'])
@@ -70,6 +56,31 @@ def signup(request):
             return render(request, 'authentication/signup_email_sent.html', { 'email' : user.email })
     return render(request, 'authentication/signup.html', { 'form': f})
 
+def login(request):
+	# print(request.user)
+	if request.user.is_authenticated():
+		return redirect('home')
+	elif request.method == 'GET':
+		print("get")
+		f = LoginForm()
+
+	else:
+		print("post")
+		f = LoginForm(request.POST)
+		if f.is_valid():
+			print("valid")
+			user = f.get_user()
+			print(user)
+			auth_login(request,user)
+			print("valid")
+			return redirect('home')
+		else:
+			data = {'error': True, 'errors' : dict(f.errors.items())}
+			return	JsonResponse(status = 400, data = data)
+
+	return render(request, 'authentication/login.html',{'form': f})		
+            	
+
 
 @require_GET
 def logout(request):
@@ -80,8 +91,6 @@ def logout(request):
 @require_GET
 @login_required
 def home(request):
-    # print(request.user.profile_pic)
-
     return render(request, 'authentication/home.html', {})
 
 
