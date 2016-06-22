@@ -1,0 +1,7 @@
+body{
+	/*background-image: url(https://p.w3layouts.com/demos/photo_time/web/images/banner.jpg);*/
+	height: 100%;
+	width: 90%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}

@@ -1,0 +1,8 @@
+Hi {{ username }},
+Thanks for signing up on MeID. 
+You are just 1 step away from completing your signup process. Click on the below link to verify yourself.
+
+{{ protocol }}://{{ domain }}{% url 'activate' uid=uid token=token %}
+
+Thanks,
+MiniQuora Team

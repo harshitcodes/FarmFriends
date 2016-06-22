@@ -1,0 +1,23 @@
+{% extends 'authentication/base.html' %}
+{% load staticfiles %}
+
+<head>
+	{% block pagetitle %} Login {% endblock %}
+	{% block extrahead %}
+		<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+	{% endblock %}
+</head>
+</head>
+<body>
+	{% block content%}
+	<h4>Login</h4>
+	<div> 
+		<form method="POST" action = "{% url 'base' %}" id="login-form">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" id ="login-btn" name="login" class="btn waves-effect waves-light left">Log In</button>
+		</form>
+	</div>
+	{% endblock %}
+</body>
+</html>
