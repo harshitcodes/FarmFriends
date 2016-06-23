@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'cms.views.base', name = 'base'),
     url(r'^cms/', include('cms.urls')),
+    url(r'^weather/', include('weather.urls')),
 
 
 ]+ static.static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
